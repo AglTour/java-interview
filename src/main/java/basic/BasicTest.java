@@ -11,19 +11,19 @@ public class BasicTest {
    * return i ^ n for positive Integer, None otherwise
    * alse return None in case of errors
    */
-  public static Option<Integer> power(Integer i, Integer n) {
-    // Case of negative integer
-    if (i < 0 || n < 0)
-      return Option.none();
+    public static Option<Integer> power(Integer i, Integer n) {
+        // Case of negative integer
+        if (i < 0 || n < 0)
+          return Option.none();
 
-    Integer result = 1;
-    while (n > 0 && result > 0)
-    {
-      result *= i;
-      n--;
+        Integer result = 1;
+        while (n > 0 && result > 0)
+        {
+            result *= i;
+            n--;
+        }
+
+        // Case of error
+        return result < 0 ? Option.none() : Option.of(result);
     }
-
-    // Case of error
-    return result < 0 ? Option.none() : Option.of(result);
-  }
 }
