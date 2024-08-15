@@ -1,3 +1,11 @@
+
+# Dependancies
+
+* [vavr](https://www.vavr.io/)
+* [List](https://docs.vavr.io/#_list)
+* [Option](https://docs.vavr.io/#_option)
+* [Tuple](https://docs.vavr.io/#_tuples)
+
 # How to run
 
 We're a scala shop so this is how we will run the code
@@ -7,12 +15,11 @@ This is not mandatory for the test, you can use maven / graddle / other...
 * install [sbt](https://www.scala-sbt.org/)
 * run this command
 
-```shell
+```
 cd /some_path/java-interview
 sbt clean update compile
 sbt test
 ```
-
 
 # Result of tests - 2024/08/15
 
