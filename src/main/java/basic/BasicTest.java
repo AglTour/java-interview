@@ -12,6 +12,18 @@ public class BasicTest {
    * alse return None in case of errors
    */
   public static Option<Integer> power(Integer i, Integer n) {
-    return Option.none();
+    // Case of negative integer
+    if (i < 0 || n < 0)
+      return Option.none();
+
+    Integer result = 1;
+    while (n > 0 && result > 0)
+    {
+      result *= i;
+      n--;
+    }
+
+    // Case of error
+    return result < 0 ? Option.none() : Option.of(result);
   }
 }

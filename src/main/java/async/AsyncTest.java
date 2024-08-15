@@ -4,7 +4,10 @@ import io.vavr.collection.List;
 import io.vavr.*;
 import io.vavr.control.Option;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 
 /**
  * You should complete the function in this class
@@ -23,15 +26,21 @@ class AsyncTest {
   );
 
   public static CompletableFuture<Option<Ceo>> getCeoById(String ceo_id) {
-    return null;
+    return CompletableFuture.supplyAsync(() -> ceos.find(ceo -> Objects.equals(ceo.id, ceo_id)));
   }
 
   public static CompletableFuture<Option<Enterprise>> getEnterpriseByCeoId(String ceo_id) {
-    return null;
+    return CompletableFuture.supplyAsync(() -> enterprises.find(enterprise -> Objects.equals(enterprise.ceo_id, ceo_id)));
   }
 
   public static CompletableFuture<Tuple2<Option<Ceo>, Option<Enterprise>>> getCEOAndEnterprise(String ceo_id) {
-    return null;
+    return CompletableFuture.supplyAsync(() -> {
+        try {
+            return new Tuple2<>(getCeoById(ceo_id).get(), getEnterpriseByCeoId(ceo_id).get());
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    });
   }
 
 }
